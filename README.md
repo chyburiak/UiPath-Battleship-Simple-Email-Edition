@@ -5,7 +5,7 @@ Players interact with the game entirely through email messages.
 
 All messages must be sent to:
 
-`chyburyaks.uipath.battleship@gmail.com`
+`chyburiaks.uipath.battleship@gmail.com`
 
 > [!WARNING]
 >
