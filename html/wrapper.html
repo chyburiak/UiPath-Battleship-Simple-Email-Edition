@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <body style="margin:0; padding:0; background-color:#f4f6f8; font-family:Arial, Helvetica, sans-serif; color:#1f2933;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8; padding:24px 0;">
+            <tr>
+                <td align="center">
+                    <table width="600" cellpadding="0" cellspacing="0" style="background-color:#ffffff; border-radius:14px; overflow:hidden; border:1px solid #d9e2ec;">
+                        <tr>
+                            <td style="background-color:#0f766e; padding:22px 28px; color:#ffffff;">
+                                <h1 style="margin:0; font-size:26px; font-weight:700;">UiPath Battleship: Email Edition</h1>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding:26px 28px;">
+                                <h2 style="margin:0 0 10px 0; font-size:22px; color:#111827;">{Title}</h2>
+
+                                <p class="main-message" style="margin:0 0 18px 0; font-size:15px; line-height:1.5;">
+                                    Hello <strong>{PlayerName}</strong>,<br>
+                                    {MessageBody}
+                                </p>
+
+                                <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#ecfdf5; border:1px solid #a7f3d0; border-radius:10px;">
+                                    <tr>
+                                        <td style="padding:14px 16px 6px 16px; font-size:14px;">
+                                            <strong>Next action:</strong> {NextActionSubject}<br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding:0 16px 14px 16px; font-size:14px;">
+                                            <em style="padding-top: 10px;">Please use the <a href="https://github.com/">manual</a> to perform an action!</em>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td> 
+                        </tr>
+
+                        <tr>
+                            <tr colspan="2">
+                                <td style="padding:0 28px; margin: 0 auto;" align="center">{OpponentBoard}</td>
+                            </tr>
+
+                            <tr colspan="2">
+                                <td style="padding:0 28px 10px 28px; margin: 0 auto;" align="center">{YourBoard}</td>
+                            </tr>
+                        </tr>
+                        
+
+                        <tr>
+                            <td style="background-color:#f1f5f9; padding:14px 28px; font-size:12px; color:#64748b;">
+                            This message was generated automatically by the UiPath Battleship robot.
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

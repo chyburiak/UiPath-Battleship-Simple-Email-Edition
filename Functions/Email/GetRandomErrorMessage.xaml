@@ -1,0 +1,118 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GetRandomErrorMessage" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="out_ErrorMessage" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>GetRandomErrorMessage_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Numerics</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GetRandomErrorMessage" sap:VirtualizedContainerService.HintSize="1353.9622641509432,604.7389811320754" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="list_ErrorMessages">
+        <Variable.Default>
+          <VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="New List(Of String) From {&#xD;&#xA;&quot;Captain, the robot inspected your command and gently pushed it overboard.&quot;,&#xD;&#xA;&quot;The command reached the fleet, but nobody on deck understood it.&quot;,&#xD;&#xA;&quot;Your message was brave, but sadly not valid.&quot;,&#xD;&#xA;&quot;The robot tried to process this command, sighed, and opened the manual.&quot;,&#xD;&#xA;&quot;This command missed the battlefield entirely.&quot;,&#xD;&#xA;&quot;The fleet is confused. Please check your command format.&quot;,&#xD;&#xA;&quot;That was almost a valid command. Almost.&quot;,&#xD;&#xA;&quot;The sea accepted your message. The robot did not.&quot;,&#xD;&#xA;&quot;Your command has been sent to the Bermuda Triangle for further investigation.&quot;,&#xD;&#xA;&quot;The robot checked the rules and started blinking suspiciously.&quot;,&#xD;&#xA;&quot;Navigation failure detected. The fleet has no idea where to shoot.&quot;,&#xD;&#xA;&quot;This command was lost somewhere between the harbor and reality.&quot;,&#xD;&#xA;&quot;The admiral would like to remind you that syntax matters.&quot;,&#xD;&#xA;&quot;The fleet received your order and immediately requested clarification.&quot;,&#xD;&#xA;&quot;Invalid maneuver. Several sailors are now arguing over the map.&quot;,&#xD;&#xA;&quot;The robot attempted to decode your message and developed trust issues.&quot;,&#xD;&#xA;&quot;Your command collided with an iceberg of bad formatting.&quot;,&#xD;&#xA;&quot;Mission failed successfully.&quot;,&#xD;&#xA;&quot;The radar picked up your message and classified it as suspicious.&quot;,&#xD;&#xA;&quot;The fleet would appreciate coordinates that actually exist.&quot;,&#xD;&#xA;&quot;The cannons are ready. Your command is not.&quot;,&#xD;&#xA;&quot;Your email confused the navigation officer beyond recovery.&quot;,&#xD;&#xA;&quot;The robot survived the command. Barely.&quot;,&#xD;&#xA;&quot;Unexpected input detected. The fleet is emotionally recovering.&quot;,&#xD;&#xA;&quot;The command parser has entered international waters.&quot;,&#xD;&#xA;&quot;This move has been rejected by the laws of naval warfare.&quot;,&#xD;&#xA;&quot;The fleet cannot follow orders written by sea ghosts.&quot;,&#xD;&#xA;&quot;Your strategy is impressive, but the syntax is terrifying.&quot;,&#xD;&#xA;&quot;The robot opened your message, stared into the void, and closed it again.&quot;,&#xD;&#xA;&quot;Error 404: Tactical genius not found.&quot;,&#xD;&#xA;&quot;The command was technically creative, but operationally catastrophic.&quot;,&#xD;&#xA;&quot;The fleet appreciates your enthusiasm.&quot;,&#xD;&#xA;&quot;The ship attempted to execute your command and immediately reconsidered.&quot;,&#xD;&#xA;&quot;Your move has raised several philosophical questions among the crew.&quot;,&#xD;&#xA;&quot;The robot read your command and requested paid vacation.&quot;&#xD;&#xA;}" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Int32" Name="int_RandomIndex" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Generate Rundom Number" sap:VirtualizedContainerService.HintSize="434.71698113207543,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[int_RandomIndex]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[New Random().Next(0, list_ErrorMessages.Count)]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Get Random Message" sap:VirtualizedContainerService.HintSize="434.71698113207543,103.24528301886792" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[out_ErrorMessage]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[list_ErrorMessages(int_RandomIndex)]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>
