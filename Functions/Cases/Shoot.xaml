@@ -99,7 +99,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="1336.7547169811319,6163.924528301886" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="1336.7547169811319,6276.226415094339" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_PBShip" />
       <Variable x:TypeArguments="x:String" Name="str_MailBody" />
@@ -165,7 +165,7 @@
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
     <ui:IsMatch BuilderPattern="^[A-J](10|[1-9])$" DisplayName="Is Text Matching" sap:VirtualizedContainerService.HintSize="800.6037735849056,91.47169811320754" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[str_InputData]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^[A-J](10|[1-9])$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^[A-J](10|[1-9])$" RegexOption="IgnoreCase, Compiled" Result="[bool_MailTo]" />
-    <If Condition="[String.IsNullOrWhiteSpace(str_SessionFilePath) Or bool_MailTo = False]" DisplayName="If session file doesn't exists or ReGeX is not matching" sap:VirtualizedContainerService.HintSize="800.6037735849056,5481.056603773584" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[String.IsNullOrWhiteSpace(str_SessionFilePath) Or bool_MailTo = False]" DisplayName="If session file doesn't exists or ReGeX is not matching" sap:VirtualizedContainerService.HintSize="800.6037735849056,5593.358490566037" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -190,7 +190,7 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="766.188679245283,5095.245283018868" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="766.188679245283,5207.547169811321" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -207,7 +207,7 @@
               <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[str_SessionFilePath]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <If Condition="[dt_SessionInfo.Rows(0)(&quot;Status&quot;).ToString = &quot;SHOOT&quot;]" DisplayName="If status is Shoot" sap:VirtualizedContainerService.HintSize="731.7735849056603,4859.77358490566" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[dt_SessionInfo.Rows(0)(&quot;Status&quot;).ToString = &quot;SHOOT&quot;]" DisplayName="If status is Shoot" sap:VirtualizedContainerService.HintSize="731.7735849056603,4972.075471698113" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -215,7 +215,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="697.3584905660377,4473.962264150943" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="697.3584905660377,4586.264150943396" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -276,9 +276,9 @@
                     </scg:List>
                   </ui:MultipleAssign.AssignOperations>
                 </ui:MultipleAssign>
-                <If Condition="[bool_PlayerTurn]" DisplayName="If is player turn" sap:VirtualizedContainerService.HintSize="662.9433962264151,4145.207547169811" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[bool_PlayerTurn]" DisplayName="If is player turn" sap:VirtualizedContainerService.HintSize="662.9433962264151,4257.509433962264" sap2010:WorkflowViewState.IdRef="If_3">
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="628.5283018867924,3501.2830188679245" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="628.5283018867924,3613.584905660377" sap2010:WorkflowViewState.IdRef="Sequence_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -314,7 +314,7 @@
                           </scg:List>
                         </ui:MultipleAssign.AssignOperations>
                       </ui:MultipleAssign>
-                      <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[int_CellData]" sap:VirtualizedContainerService.HintSize="594.1132075471697,3234.1132075471696" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                      <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[int_CellData]" sap:VirtualizedContainerService.HintSize="594.1132075471697,3346.4150943396226" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                         <Switch.Default>
                           <Sequence DisplayName="Duplicate Shot Notification" sap:VirtualizedContainerService.HintSize="484.5283018867924,835.9245283018868" sap2010:WorkflowViewState.IdRef="Sequence_16">
                             <sap:WorkflowViewStateService.ViewState>
@@ -368,10 +368,11 @@
                             </ui:InvokeWorkflowFile>
                           </Sequence>
                         </Switch.Default>
-                        <Sequence x:Key="1" DisplayName="Hit" sap:VirtualizedContainerService.HintSize="553.3584905660377,3013.132075471698" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <Sequence x:Key="1" DisplayName="Hit" sap:VirtualizedContainerService.HintSize="553.3584905660377,3125.4339622641505" sap2010:WorkflowViewState.IdRef="Sequence_11">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Assign DisplayName="Assign new Cell Value" sap:VirtualizedContainerService.HintSize="518.9433962264151,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_5">
@@ -398,6 +399,16 @@
                             </Assign.To>
                             <Assign.Value>
                               <InArgument x:TypeArguments="x:Object">[CInt(dt_SessionInfo.Rows(0)(str_OponentHPLabel)) - 1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign DisplayName="Update Active Player Marker" sap:VirtualizedContainerService.HintSize="518.9433962264151,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_13">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Object">[dt_SessionInfo.Rows(0)("Active Player")]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Object" xml:space="preserve">[If(dt_SessionInfo.Rows(0)("Player A").ToString = str_MailFrom,
+   "Player B",
+   "Player A")]</InArgument>
                             </Assign.Value>
                           </Assign>
                           <Sequence DisplayName="Prepare Boards HTML" sap:VirtualizedContainerService.HintSize="518.9433962264151,785.2075471698113" sap2010:WorkflowViewState.IdRef="Sequence_29">
@@ -616,7 +627,7 @@
                                   <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_Board">[dt_OponentPlayerData]</InArgument>
                                   <OutArgument x:TypeArguments="x:String" x:Key="out_str_BoardHtml">[str_OponentPlayerBoard]</OutArgument>
                                   <InArgument x:TypeArguments="x:String" x:Key="in_str_BoardTitle">Your Board</InArgument>
-                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_Hidden">True</InArgument>
+                                  <InArgument x:TypeArguments="x:Boolean" x:Key="in_bool_Hidden">False</InArgument>
                                 </ui:InvokeWorkflowFile.Arguments>
                               </ui:InvokeWorkflowFile>
                               <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Render Oponent Player Board - Hidden" sap:VirtualizedContainerService.HintSize="415.6981132075471,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_59" UnSafe="False" WorkflowFileName="Functions\Email\RenderBoard.xaml">
