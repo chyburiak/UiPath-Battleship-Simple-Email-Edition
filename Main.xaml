@@ -104,7 +104,7 @@
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1336.7547169811319,2009.6603773584905" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1633.811320754717,2009.6603773584905" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="Session Info" Name="str_SessionInfoSheet" />
       <Variable x:TypeArguments="x:String" Default="Player A" Name="str_PlayerAShipsSheet" />
@@ -173,7 +173,7 @@
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                           </Switch.Default>
-                          <Sequence x:Key="INVITE" DisplayName="Invite" sap:VirtualizedContainerService.HintSize="451.01886792452825,313.3584905660377" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                          <Sequence x:Key="INVITE" DisplayName="Invite" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_6">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -191,7 +191,7 @@
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                           </Sequence>
-                          <Sequence x:Key="ACCEPT" DisplayName="Accept" sap:VirtualizedContainerService.HintSize="451.01886792452825,313.3584905660377" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <Sequence x:Key="ACCEPT" DisplayName="Accept" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_8">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -209,7 +209,7 @@
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                           </Sequence>
-                          <Sequence x:Key="REJECT" DisplayName="Reject" sap:VirtualizedContainerService.HintSize="451.01886792452825,313.3584905660377" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence x:Key="REJECT" DisplayName="Reject" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_9">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -227,13 +227,23 @@
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                           </Sequence>
-                          <Sequence x:Key="SHIPS" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="451.01886792452825,137.66037735849056" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                          <Sequence x:Key="SHIPS" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_10">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,159.39622641509433" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;Ships Request Found.&quot;]" />
+                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;Ships Request Found.&quot;]" />
+                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Functions\Cases\Ships.xaml">
+                              <ui:InvokeWorkflowFile.Arguments>
+                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                              </ui:InvokeWorkflowFile.Arguments>
+                            </ui:InvokeWorkflowFile>
                           </Sequence>
                           <Sequence x:Key="SHOOT" DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_11">
                             <sap:WorkflowViewStateService.ViewState>
@@ -253,7 +263,7 @@
                               </ui:InvokeWorkflowFile.Arguments>
                             </ui:InvokeWorkflowFile>
                           </Sequence>
-                          <Sequence x:Key="SURRENDER" DisplayName="Surrender" sap:VirtualizedContainerService.HintSize="451.01886792452825,306.1132075471698" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <Sequence x:Key="SURRENDER" DisplayName="Surrender" sap:VirtualizedContainerService.HintSize="451.01886792452825,307.92452830188677" sap2010:WorkflowViewState.IdRef="Sequence_12">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
