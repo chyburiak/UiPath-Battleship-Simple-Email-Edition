@@ -3,8 +3,6 @@
     <x:Property Name="in_str_SessionInfoSheet" Type="InArgument(x:String)" />
     <x:Property Name="in_str_PlayerAShipsSheet" Type="InArgument(x:String)" />
     <x:Property Name="in_str_PlayerBShipsSheet" Type="InArgument(x:String)" />
-    <x:Property Name="in_ServiceEmailOrchestratorFolder" Type="InArgument(x:String)" />
-    <x:Property Name="in_ServiceEmailOrchestratorName" Type="InArgument(x:String)" />
     <x:Property Name="in_InputMail" Type="InArgument(snm:MailMessage)" />
   </x:Members>
   <VisualBasic.Settings>
@@ -99,7 +97,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="1633.811320754717,6627.622641509433" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="1675.4716981132074,5172.226415094339" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_PBShip" />
       <Variable x:TypeArguments="x:String" Name="str_MailBody" />
@@ -128,7 +126,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign DisplayName="Get Acceptor Mail" sap:VirtualizedContainerService.HintSize="800.6037735849056,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign DisplayName="Get Acceptor Mail" sap:VirtualizedContainerService.HintSize="766.188679245283,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[str_MailFrom]</OutArgument>
       </Assign.To>
@@ -136,7 +134,7 @@
         <InArgument x:TypeArguments="x:String">[in_InputMail.From.Address]</InArgument>
       </Assign.Value>
     </Assign>
-    <Assign DisplayName="Prepare Mail Body" sap:VirtualizedContainerService.HintSize="800.6037735849056,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_3">
+    <Assign DisplayName="Prepare Mail Body" sap:VirtualizedContainerService.HintSize="766.188679245283,112.30188679245282" sap2010:WorkflowViewState.IdRef="Assign_3">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[str_InputData]</OutArgument>
       </Assign.To>
@@ -144,7 +142,7 @@
         <InArgument x:TypeArguments="x:String">[in_InputMail.Body.Trim.ToUpper]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="800.6037735849056,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Shoot Request Registred.&quot;]">
+    <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="766.188679245283,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;Shoot Request Registred.&quot;]">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,7 +150,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetSessionPathIfExists" sap:VirtualizedContainerService.HintSize="800.6037735849056,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Functions\Session\GetSessionPathIfExists.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="GetSessionPathIfExists" sap:VirtualizedContainerService.HintSize="766.188679245283,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Functions\Session\GetSessionPathIfExists.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="x:String" x:Key="in_UserEmail">[str_MailFrom]</InArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="out_FileName">[str_SessionFilePath]</OutArgument>
@@ -164,8 +162,8 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:InvokeWorkflowFile>
-    <ui:IsMatch BuilderPattern="^[A-J](10|[1-9])$" DisplayName="Is Text Matching" sap:VirtualizedContainerService.HintSize="800.6037735849056,91.47169811320754" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[str_InputData]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^[A-J](10|[1-9])$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^[A-J](10|[1-9])$" RegexOption="IgnoreCase, Compiled" Result="[bool_MailTo]" />
-    <If Condition="[String.IsNullOrWhiteSpace(str_SessionFilePath) Or bool_MailTo = False]" DisplayName="If session file doesn't exists or ReGeX is not matching" sap:VirtualizedContainerService.HintSize="800.6037735849056,5944.754716981131" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:IsMatch BuilderPattern="^[A-J](10|[1-9])$" DisplayName="Is Text Matching" sap:VirtualizedContainerService.HintSize="766.188679245283,91.47169811320754" sap2010:WorkflowViewState.IdRef="IsMatch_1" Input="[str_InputData]" IsBuilderTabModified="True" Model="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;LIT&quot;,&quot;OperationName&quot;:&quot;Literal&quot;,&quot;OperationValue&quot;:&quot;^[A-J](10|[1-9])$&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;Exactly&quot;,&quot;QuantifierSecondValue&quot;:null}]" Pattern="^[A-J](10|[1-9])$" RegexOption="IgnoreCase, Compiled" Result="[bool_MailTo]" />
+    <If Condition="[String.IsNullOrWhiteSpace(str_SessionFilePath) Or bool_MailTo = False]" DisplayName="If session file doesn't exists or ReGeX is not matching" sap:VirtualizedContainerService.HintSize="766.188679245283,4489.358490566037" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -173,7 +171,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="766.188679245283,226.4150943396226" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="731.7735849056603,226.4150943396226" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -183,20 +181,18 @@
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_MailBody">[str_MailBody]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_MailFrom">[str_MailFrom]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="766.188679245283,5558.943396226415" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="731.7735849056603,4103.547169811321" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Read Session" sap:VirtualizedContainerService.HintSize="731.7735849056603,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Functions\Session\Read.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Read Session" sap:VirtualizedContainerService.HintSize="697.3584905660377,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Functions\Session\Read.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_SessionInfo">[dt_SessionInfo]</OutArgument>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_dt_PAShips">[dt_PAShip]</OutArgument>
@@ -207,7 +203,7 @@
               <InArgument x:TypeArguments="x:String" x:Key="in_FilePath">[str_SessionFilePath]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <If Condition="[dt_SessionInfo.Rows(0)(&quot;Status&quot;).ToString = &quot;SHOOT&quot;]" DisplayName="If status is Shoot" sap:VirtualizedContainerService.HintSize="731.7735849056603,5323.471698113207" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[dt_SessionInfo.Rows(0)(&quot;Status&quot;).ToString = &quot;SHOOT&quot;]" DisplayName="If status is Shoot" sap:VirtualizedContainerService.HintSize="697.3584905660377,3868.075471698113" sap2010:WorkflowViewState.IdRef="If_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -215,14 +211,14 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="697.3584905660377,4937.66037735849" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="662.9433962264151,3482.264150943396" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="662.9433962264151,268.9811320754717" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="628.5283018867924,268.9811320754717" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                   <ui:MultipleAssign.AssignOperations>
                     <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                       <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -276,15 +272,15 @@
                     </scg:List>
                   </ui:MultipleAssign.AssignOperations>
                 </ui:MultipleAssign>
-                <If Condition="[bool_PlayerTurn]" DisplayName="If is player turn" sap:VirtualizedContainerService.HintSize="662.9433962264151,4608.905660377358" sap2010:WorkflowViewState.IdRef="If_3">
+                <If Condition="[bool_PlayerTurn]" DisplayName="If is player turn" sap:VirtualizedContainerService.HintSize="628.5283018867924,3153.5094339622638" sap2010:WorkflowViewState.IdRef="If_3">
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="628.5283018867924,3964.9811320754716" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="594.1132075471697,2509.584905660377" sap2010:WorkflowViewState.IdRef="Sequence_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:MultipleAssign DisplayName="Convert Input Data" sap:VirtualizedContainerService.HintSize="594.1132075471697,207.39622641509433" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                      <ui:MultipleAssign DisplayName="Convert Input Data" sap:VirtualizedContainerService.HintSize="559.6981132075472,207.39622641509433" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
                         <ui:MultipleAssign.AssignOperations>
                           <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                             <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -314,7 +310,7 @@
                           </scg:List>
                         </ui:MultipleAssign.AssignOperations>
                       </ui:MultipleAssign>
-                      <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[int_CellData]" sap:VirtualizedContainerService.HintSize="594.1132075471697,3697.8113207547167" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                      <Switch x:TypeArguments="x:Int32" DisplayName="Switch" Expression="[int_CellData]" sap:VirtualizedContainerService.HintSize="559.6981132075472,2242.4150943396226" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                         <Switch.Default>
                           <Sequence DisplayName="Duplicate Shot Notification" sap:VirtualizedContainerService.HintSize="484.5283018867924,835.9245283018868" sap2010:WorkflowViewState.IdRef="Sequence_16">
                             <sap:WorkflowViewStateService.ViewState>
@@ -359,8 +355,6 @@
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Active Player Notification" sap:VirtualizedContainerService.HintSize="450.1132075471698,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_25" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Duplicate Shot</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -484,8 +478,6 @@
                                   </ui:InvokeWorkflowFile>
                                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Active Player Notification" sap:VirtualizedContainerService.HintSize="415.6981132075471,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_42" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                                     <ui:InvokeWorkflowFile.Arguments>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Victory!</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -504,8 +496,6 @@
                                   </ui:InvokeWorkflowFile>
                                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Non-Active Player Notification" sap:VirtualizedContainerService.HintSize="415.6981132075471,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_44" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                                     <ui:InvokeWorkflowFile.Arguments>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailTo]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Defeat.</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -546,8 +536,6 @@
                                   </ui:InvokeWorkflowFile>
                                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Active Player Notification" sap:VirtualizedContainerService.HintSize="415.6981132075471,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_13" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                                     <ui:InvokeWorkflowFile.Arguments>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Hit!</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -566,8 +554,6 @@
                                   </ui:InvokeWorkflowFile>
                                   <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Non-Active Player Notification" sap:VirtualizedContainerService.HintSize="415.6981132075471,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_67" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                                     <ui:InvokeWorkflowFile.Arguments>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                      <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailTo]</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Subject">You've been hit.</InArgument>
                                       <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -589,7 +575,7 @@
                             </If.Else>
                           </If>
                         </Sequence>
-                        <Sequence x:Key="0" DisplayName="Miss" sap:VirtualizedContainerService.HintSize="553.3584905660377,2019.6226415094338" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                        <Sequence x:Key="0" DisplayName="Miss" sap:VirtualizedContainerService.HintSize="518.9433962264151,2021.4339622641508" sap2010:WorkflowViewState.IdRef="Sequence_15">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -672,8 +658,6 @@
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Active Player Notification" sap:VirtualizedContainerService.HintSize="450.1132075471698,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_21" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Miss.</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -692,8 +676,6 @@
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Non-Active Player Notification" sap:VirtualizedContainerService.HintSize="450.1132075471698,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_23" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailTo]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Subject">The opponent missed.</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -716,7 +698,7 @@
                     </Sequence>
                   </If.Then>
                   <If.Else>
-                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="628.5283018867924,484.5283018867924" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="594.1132075471697,484.5283018867924" sap2010:WorkflowViewState.IdRef="Sequence_8">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -741,8 +723,6 @@
                         </ui:InvokeWorkflowFile>
                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Sender Notification" sap:VirtualizedContainerService.HintSize="415.6981132075471,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                           <ui:InvokeWorkflowFile.Arguments>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                            <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Not your turn.</InArgument>
                             <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -755,7 +735,7 @@
               </Sequence>
             </If.Then>
             <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="697.3584905660377,226.4150943396226" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="662.9433962264151,226.4150943396226" sap2010:WorkflowViewState.IdRef="Sequence_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -765,8 +745,6 @@
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_MailBody">[str_MailBody]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_MailFrom">[str_MailFrom]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
               </Sequence>

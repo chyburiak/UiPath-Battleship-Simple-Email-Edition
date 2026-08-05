@@ -1,8 +1,6 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="Ships" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_InputMail" Type="InArgument(snm:MailMessage)" />
-    <x:Property Name="in_ServiceEmailOrchestratorFolder" Type="InArgument(x:String)" />
-    <x:Property Name="in_ServiceEmailOrchestratorName" Type="InArgument(x:String)" />
     <x:Property Name="in_str_SessionInfoSheet" Type="InArgument(x:String)" />
     <x:Property Name="in_str_PlayerAShipsSheet" Type="InArgument(x:String)" />
     <x:Property Name="in_str_PlayerBShipsSheet" Type="InArgument(x:String)" />
@@ -103,7 +101,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Ships" sap:VirtualizedContainerService.HintSize="1633.811320754717,6245.433962264151" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Ships" sap:VirtualizedContainerService.HintSize="1675.4716981132074,6245.433962264151" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="str_MailFrom" />
       <Variable x:TypeArguments="x:String" Name="str_InputData" />
@@ -175,8 +173,6 @@
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_MailBody">[str_MailBody]</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_MailFrom">[str_MailFrom]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
         </Sequence>
@@ -319,8 +315,6 @@
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="518.9433962264151,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Your ships are ready!</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -409,8 +403,6 @@
                                         </ui:InvokeWorkflowFile>
                                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Notifacion" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_17" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                            <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Your Turn!</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -458,8 +450,6 @@
                                         </ui:InvokeWorkflowFile>
                                         <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Notifacion" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_22" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                                           <ui:InvokeWorkflowFile.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                            <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_OponentPlayerEmail]</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Your Turn!</InArgument>
                                             <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -497,8 +487,6 @@
                             </ui:InvokeWorkflowFile>
                             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Email" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
                               <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[str_MailFrom]</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Error!</InArgument>
                                 <InArgument x:TypeArguments="x:String" x:Key="in_Body">[str_MailBody]</InArgument>
@@ -520,8 +508,6 @@
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="x:String" x:Key="in_MailBody">[str_MailBody]</InArgument>
                           <InArgument x:TypeArguments="x:String" x:Key="in_MailFrom">[str_MailFrom]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
                     </Sequence>
@@ -540,8 +526,6 @@
                   <ui:InvokeWorkflowFile.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="in_MailBody">[str_MailBody]</InArgument>
                     <InArgument x:TypeArguments="x:String" x:Key="in_MailFrom">[str_MailFrom]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
               </Sequence>

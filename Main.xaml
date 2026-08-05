@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umam="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umame="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Enums;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umamm="clr-namespace:UiPath.MicrosoftOffice365.Activities.Mail.Models;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:umm="clr-namespace:UiPath.MicrosoftOffice365.Models;assembly=UiPath.MicrosoftOffice365" xmlns:usau="clr-namespace:UiPath.Shared.Activities.Utils;assembly=UiPath.MicrosoftOffice365.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -40,6 +40,20 @@
       <x:String>UiPath.Mail.IMAP.Activities</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Models</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Models</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail</x:String>
+      <x:String>UiPath.Shared.Activities.ConnectionService.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities</x:String>
+      <x:String>UiPath.MicrosoftOffice365</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Mail.Filters</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Contracts</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Mail.Enums</x:String>
+      <x:String>UiPath.MicrosoftOffice365.Activities.Filters</x:String>
+      <x:String>UiPath.Shared.Services.Graph.Mail.Contracts</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -102,213 +116,171 @@
       <AssemblyReference>UiPath.Python.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1633.811320754717,2009.6603773584905" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="1675.4716981132074,1065.9622641509434" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="Session Info" Name="str_SessionInfoSheet" />
       <Variable x:TypeArguments="x:String" Default="Player A" Name="str_PlayerAShipsSheet" />
       <Variable x:TypeArguments="x:String" Default="Player B" Name="str_PlayerBShipsSheet" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_testsi" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_testash" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dt_testbsh" />
-      <Variable x:TypeArguments="x:String" Name="str_testsi" />
-      <Variable x:TypeArguments="x:String" Name="str_testash" />
-      <Variable x:TypeArguments="x:String" Name="str_testbsh" />
-      <Variable x:TypeArguments="x:String" Default="UiPath Battleship Email" Name="str_ServiceEmailOrchestratorName" />
-      <Variable x:TypeArguments="x:String" Default="stanislav.chyburiak@gmail.com's workspace" Name="str_ServiceEmailOrchestratorFolder" />
-      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="list_Inbox" />
+      <Variable x:TypeArguments="snm:MailMessage" Name="MailMessage" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="True" DisplayName="While" sap:VirtualizedContainerService.HintSize="698.2641509433962,1987.0188679245282" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1" MaxIterations="0">
-      <ui:InterruptibleWhile.Body>
-        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="663.8490566037735,1411.0188679245282" sap2010:WorkflowViewState.IdRef="Sequence_7">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="629.4339622641509,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[&quot;Reading Inbox&quot;]" />
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Get Email Content from Inbox" sap:VirtualizedContainerService.HintSize="629.4339622641509,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Functions\Email\Get.xaml">
-            <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-              <OutArgument x:TypeArguments="scg:List(snm:MailMessage)" x:Key="out_Inbox">[list_Inbox]</OutArgument>
-            </ui:InvokeWorkflowFile.Arguments>
-          </ui:InvokeWorkflowFile>
-          <If Condition="[list_Inbox.Count &gt; 0]" DisplayName="If Inbox List is not empty" sap:VirtualizedContainerService.HintSize="629.4339622641509,896.6037735849056" sap2010:WorkflowViewState.IdRef="If_1">
-            <If.Then>
-              <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="595.0188679245283,508.9811320754717" sap2010:WorkflowViewState.IdRef="Sequence_2">
-                <Sequence.Variables>
-                  <Variable x:TypeArguments="x:Int32" Name="MailIndex" />
-                </Sequence.Variables>
+    <umam:ForEachEmailConnections ConnectionAccountName="{x:Null}" Filter="{x:Null}" FolderIdBackup="{x:Reference __ReferenceID2}" FreeTextFilter="{x:Null}" Length="{x:Null}" ManualEntryFolder="{x:Null}" QueryFilter="{x:Null}" AuthScopesInvalid="False" BodyAsHtml="False" BrowserFolder="Battleship" BrowserFolderId="AAMkAGFmYTFmZjAxLTE0MzUtNDUyNi04OTg5LTM4MjNmYzViYmNhNQAuAAAAAAD33rV8-3W_S44k6mWJFTtjAQCNntlTJNrtTJS-SMl3dC1eAADySqLWAAA=" ConnectionId="ee82a6a4-5033-4294-a0ac-6b951c1456ff" CurrentItemVariableName="MailMessage" DisplayName="For Each Email" FilterSelectionMode="ConditionBuilder" sap:VirtualizedContainerService.HintSize="560.6037735849056,1043.3207547169811" sap2010:WorkflowViewState.IdRef="ForEachEmailConnections_2" Importance="Any" IncludeSubfolders="False" MarkAsRead="True" MaxResults="999" OrderByDate="NewestFirst" SelectionMode="Browse" UnreadOnly="True" UseConnectionService="True" UseSharedMailbox="False" WithAttachmentsOnly="False">
+      <umam:ForEachEmailConnections.Body>
+        <ActivityAction x:TypeArguments="umm:Office365Message, x:Int32">
+          <ActivityAction.Argument1>
+            <DelegateInArgument x:TypeArguments="umm:Office365Message" Name="MailMessage" />
+          </ActivityAction.Argument1>
+          <ActivityAction.Argument2>
+            <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentEmailIndex" />
+          </ActivityAction.Argument2>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="526.188679245283,755.3207547169811" sap2010:WorkflowViewState.IdRef="Sequence_14">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[MailMessage.Subject.Trim.ToUpper]" sap:VirtualizedContainerService.HintSize="491.77358490566036,695.5471698113207" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+              <Sequence x:Key="INVITE" DisplayName="Invite" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="[MailIndex]" DisplayName="For Each Inbox Email" sap:VirtualizedContainerService.HintSize="560.6037735849056,449.2075471698113" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[list_Inbox]">
-                  <ui:ForEach.Body>
-                    <ActivityAction x:TypeArguments="snm:MailMessage">
-                      <ActivityAction.Argument>
-                        <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="MailMessage" />
-                      </ActivityAction.Argument>
-                      <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526.188679245283,314.2641509433962" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[MailMessage.Subject.Trim.ToUpper]" sap:VirtualizedContainerService.HintSize="491.77358490566036,254.49056603773585" sap2010:WorkflowViewState.IdRef="Switch`1_3">
-                          <Switch.Default>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Delete Email Content" sap:VirtualizedContainerService.HintSize="453.73584905660374,144" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Functions\Email\Delete.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_MailToDelete">[MailMessage]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                          </Switch.Default>
-                          <Sequence x:Key="INVITE" DisplayName="Invite" sap:VirtualizedContainerService.HintSize="451.01886792452825,226.4150943396226" sap2010:WorkflowViewState.IdRef="Sequence_6">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[&quot;Invite Request Found.&quot;]" />
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Functions\Cases\Invite.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                          </Sequence>
-                          <Sequence x:Key="ACCEPT" DisplayName="Accept" sap:VirtualizedContainerService.HintSize="451.01886792452825,313.3584905660377" sap2010:WorkflowViewState.IdRef="Sequence_8">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[&quot;Accept Request Found.&quot;]" />
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Accept" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Functions\Cases\Accept.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                          </Sequence>
-                          <Sequence x:Key="REJECT" DisplayName="Reject" sap:VirtualizedContainerService.HintSize="451.01886792452825,313.3584905660377" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;Reject Request Found.&quot;]" />
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Reject" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Functions\Cases\Reject.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                          </Sequence>
-                          <Sequence x:Key="SHIPS" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_10">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;Ships Request Found.&quot;]" />
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Functions\Cases\Ships.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                          </Sequence>
-                          <Sequence x:Key="SHOOT" DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Trace" Message="[&quot;Shoot Request Found.&quot;]" />
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Shoot - Invoke Workflow File (Functions\Cases\Shoot.xaml)" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Functions\Cases\Shoot.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                          </Sequence>
-                          <Sequence x:Key="SURRENDER" DisplayName="Surrender" sap:VirtualizedContainerService.HintSize="451.01886792452825,307.92452830188677" sap2010:WorkflowViewState.IdRef="Sequence_12">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Surrender" sap:VirtualizedContainerService.HintSize="381.2830188679245,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Functions\Cases\Surrender.xaml">
-                              <ui:InvokeWorkflowFile.Arguments>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[str_ServiceEmailOrchestratorFolder]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[str_ServiceEmailOrchestratorName]</InArgument>
-                                <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
-                              </ui:InvokeWorkflowFile.Arguments>
-                            </ui:InvokeWorkflowFile>
-                            <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,159.39622641509433" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Trace" Message="[&quot;Surrender Request Found.&quot;]" />
-                          </Sequence>
-                        </Switch>
-                      </Sequence>
-                    </ActivityAction>
-                  </ui:ForEach.Body>
-                </ui:ForEach>
+                <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[&quot;Invite Request Found.&quot;]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="Functions\Cases\Invite.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
               </Sequence>
-            </If.Then>
-            <If.Else>
-              <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="595.0188679245283,219.1698113207547" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <Sequence x:Key="ACCEPT" DisplayName="Accept" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_8">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="381.2830188679245,159.39622641509433" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Trace" Message="[&quot;No suitable Inbox Email found.&quot;]">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:LogMessage>
+                <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[&quot;Accept Request Found.&quot;]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Accept" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Functions\Cases\Accept.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
               </Sequence>
-            </If.Else>
-          </If>
-          <Delay Duration="00:00:10" sap:VirtualizedContainerService.HintSize="629.4339622641509,110.49056603773585" sap2010:WorkflowViewState.IdRef="Delay_1" />
-        </Sequence>
-      </ui:InterruptibleWhile.Body>
-    </ui:InterruptibleWhile>
+              <Sequence x:Key="REJECT" DisplayName="Reject" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Trace" Message="[&quot;Reject Request Found.&quot;]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Reject" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="Functions\Cases\Reject.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="SHIPS" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;Ships Request Found.&quot;]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Ships" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="Functions\Cases\Ships.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="SHOOT" DisplayName="Shoot" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,168.45283018867923" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Trace" Message="[&quot;Shoot Request Found.&quot;]" />
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Shoot - Invoke Workflow File (Functions\Cases\Shoot.xaml)" sap:VirtualizedContainerService.HintSize="381.2830188679245,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_11" UnSafe="False" WorkflowFileName="Functions\Cases\Shoot.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+              </Sequence>
+              <Sequence x:Key="SURRENDER" DisplayName="Surrender" sap:VirtualizedContainerService.HintSize="451.01886792452825,394.86792452830184" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Surrender" sap:VirtualizedContainerService.HintSize="381.2830188679245,175.69811320754715" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="Functions\Cases\Surrender.xaml">
+                  <ui:InvokeWorkflowFile.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerAShipsSheet">[str_PlayerAShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_PlayerBShipsSheet">[str_PlayerBShipsSheet]</InArgument>
+                    <InArgument x:TypeArguments="snm:MailMessage" x:Key="in_InputMail">[MailMessage]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_str_SessionInfoSheet">[str_SessionInfoSheet]</InArgument>
+                  </ui:InvokeWorkflowFile.Arguments>
+                </ui:InvokeWorkflowFile>
+                <ui:LogMessage DisplayName="Debug Log" sap:VirtualizedContainerService.HintSize="381.2830188679245,159.39622641509433" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Trace" Message="[&quot;Surrender Request Found.&quot;]" />
+              </Sequence>
+            </Switch>
+          </Sequence>
+        </ActivityAction>
+      </umam:ForEachEmailConnections.Body>
+      <umam:ForEachEmailConnections.FilterSelectionBackup>
+        <usau:BackupSlot x:TypeArguments="umame:FilterMode" StoredValue="ConditionBuilder">
+          <usau:BackupSlot.BackupValues>
+            <scg:Dictionary x:TypeArguments="umame:FilterMode, scg:List(x:Object)" />
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </umam:ForEachEmailConnections.FilterSelectionBackup>
+      <umam:ForEachEmailConnections.MailFolderArgument>
+        <umamm:MailFolderArgument ConnectionDescriptor="{x:Null}" ManualEntryFolder="{x:Null}" BrowserFolder="Battleship" BrowserFolderId="AAMkAGFmYTFmZjAxLTE0MzUtNDUyNi04OTg5LTM4MjNmYzViYmNhNQAuAAAAAAD33rV8-3W_S44k6mWJFTtjAQCNntlTJNrtTJS-SMl3dC1eAADySqLWAAA=" ConnectionKey="ee82a6a4-5033-4294-a0ac-6b951c1456ff" SelectionMode="Browse">
+          <umamm:MailFolderArgument.Backup>
+            <usau:BackupSlot x:TypeArguments="umame:ItemSelectionMode" x:Name="__ReferenceID2" StoredValue="Browse">
+              <usau:BackupSlot.BackupValues>
+                <scg:Dictionary x:TypeArguments="umame:ItemSelectionMode, scg:List(x:Object)" />
+              </usau:BackupSlot.BackupValues>
+            </usau:BackupSlot>
+          </umamm:MailFolderArgument.Backup>
+        </umamm:MailFolderArgument>
+      </umam:ForEachEmailConnections.MailFolderArgument>
+      <umam:ForEachEmailConnections.Mailbox>
+        <InArgument x:TypeArguments="x:String" x:Name="__ReferenceID0" />
+      </umam:ForEachEmailConnections.Mailbox>
+      <umam:ForEachEmailConnections.MailboxArg>
+        <umamm:MailboxArgument Backup="{x:Reference __ReferenceID1}" SharedMailbox="{x:Reference __ReferenceID0}" UseSharedMailbox="False" />
+      </umam:ForEachEmailConnections.MailboxArg>
+      <umam:ForEachEmailConnections.MailboxBackup>
+        <usau:BackupSlot x:TypeArguments="umame:MailboxSelectionMode" x:Name="__ReferenceID1" StoredValue="NoMailbox">
+          <usau:BackupSlot.BackupValues>
+            <scg:Dictionary x:TypeArguments="umame:MailboxSelectionMode, scg:List(x:Object)" />
+          </usau:BackupSlot.BackupValues>
+        </usau:BackupSlot>
+      </umam:ForEachEmailConnections.MailboxBackup>
+    </umam:ForEachEmailConnections>
   </Sequence>
 </Activity>

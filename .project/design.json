@@ -1,5 +1,9 @@
 {
-  "Tags": [],
+  "Tags": [
+    {
+      "Key": "battleship"
+    }
+  ],
   "SeparateRuntimeDependencies": true,
   "IncludeSources": true
 }

@@ -2,8 +2,6 @@
   <x:Members>
     <x:Property Name="in_MailBody" Type="InArgument(x:String)" />
     <x:Property Name="in_MailFrom" Type="InArgument(x:String)" />
-    <x:Property Name="in_ServiceEmailOrchestratorFolder" Type="InArgument(x:String)" />
-    <x:Property Name="in_ServiceEmailOrchestratorName" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
@@ -85,7 +83,7 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SendErrorMessage" sap:VirtualizedContainerService.HintSize="1336.7547169811319,623.0943396226414" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SendErrorMessage" sap:VirtualizedContainerService.HintSize="1675.4716981132074,623.0943396226414" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -120,8 +118,6 @@
       </ui:InvokeWorkflowFile>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Send Notification to Acceptor" sap:VirtualizedContainerService.HintSize="415.6981132075471,166.64150943396226" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Functions\Email\Send.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorFolder">[in_ServiceEmailOrchestratorFolder]</InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="in_ServiceEmailOrchestratorName">[in_ServiceEmailOrchestratorName]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_MailTo">[in_MailFrom]</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_Subject">Error!</InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="in_Body">[in_MailBody]</InArgument>

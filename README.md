@@ -3,17 +3,28 @@
 This project is a Battleship game automation built in UiPath.
 Players interact with the game entirely through email messages.
 
-All messages must be sent to:
-
-`chyburiaks.uipath.battleship@gmail.com`
+All messages must be sent to the configured robot email address.
 
 > [!WARNING]
 >
-> * The robot processes emails with a delay. Incoming emails are collected and processed sequentially.Excessive spam or repeated requests may cause unexpected game behaviour.
+> * Excessive spam or repeated requests may cause unexpected game behavior.
 >
-> * Using a non-existing email address is guaranteed to break the robot workflow.
+> * Using a non-existent email address is guaranteed to break the robot workflow.
 >
 > * Commands must be sent as new standalone emails. Replying to robot messages is not supported.
+
+---
+
+# How to Set Up
+
+1. Connect your Outlook email to Orchestrator.
+2. Pull the repository.
+3. Run UiPath Studio to compile the project. **Update** *Functions\Email\Send.xaml* with your Outlook account.
+4. Publish the project to your Orchestrator.
+5. Set up the Machine template.
+6. Set up the Event Trigger. Make sure you are watching the required folder. The process does not know what to do with emails unrelated to the game.
+7. Run the Job on your local machine using UiPath Assistant.
+8. Enjoy!
 
 ---
 
@@ -173,17 +184,17 @@ Leave empty.
 
 * Coordinates must follow the standard Battleship format.
 * All commands are case-sensitive.
-* Invalid commands or incorrect ship placements may be rejected.
-* The game starts only after both players place all ships successfully.
+* Invalid commands or incorrect ship placements will be rejected.
+* The game starts only after both players have successfully placed all their ships.
 
 ---
 
 # Technologies Used
 
-* UiPath
-* Gmail IMAP/SMTP
+* UiPath (Outlook Activities)
+* Orchestrator Event Triggers
 * DataTables
 * File-based session management
-* Excel as local storage
+* Excel (Local storage)
 * HTML email templates
-* ReGeX
+* RegEx
